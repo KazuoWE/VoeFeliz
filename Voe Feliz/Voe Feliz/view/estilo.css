@@ -1,0 +1,89 @@
+body{
+    font-family: arial, sans-serif;
+}
+
+h1{
+	color: darkblue;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+	margin:10px;
+	margin-top:30px;
+}
+
+th{
+    border: 1px solid #000000;
+	padding: 10px;
+	background-color: #d6e3bc;	
+	text-align: left;
+}
+
+td{
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #d9d9d9;
+}
+
+caption{
+	font-style:italic;
+}
+
+a {
+	border-radius: 2px;
+    text-decoration: none;
+	font-size:14px;	
+    display: inline-block; 
+	padding: 1px 6px;     
+	background: buttonface; 
+    background-image: linear-gradient(to bottom, #f7f7f7, #e4e4e4);
+	color: ButtonText;
+    border-style: solid; 
+	border-width: 1px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+
+a:active{
+	background-image: linear-gradient(to bottom, #e4e4e4, #f7f7f7);
+    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+}
+
+form{
+	border-radius: 4px;
+	background-color: #f2f2f2;
+    padding: 20px;
+	border: 1px solid #ccc;
+}
+
+input[type=text], input[type=email], select {
+    width: 200px;
+    padding: 4px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+input[type=submit]{
+	margin: 8px 0;
+}
+.menu{
+    border-style: solid
+}
+
+
+
+
+
+
+
+
+
+
+
+

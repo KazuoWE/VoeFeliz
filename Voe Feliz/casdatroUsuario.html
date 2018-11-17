@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Voe Feliz</title>
+        <link rel="stylesheet" type="text/css" href="view/estilo.css"/>
+    </head>
+    <body>
+        <?php
+        
+        ?>
+		
+		<div class="menu">
+		
+		
+		<a href="?funcao=inicio"> Inicio</a>
+		<a href="?funcao=inicio">Login</a>
+	
+		
+		
+		</div>
+		
+		<form action="?funcao=cadastroUsuario" method ="post">
+		<fieldset>
+		<legend>Cadastro de Usuário</legend>
+	<label>Nome</label>
+  <input type="text" class="form-control name-mask" placeholder="Nome completo" name="nomeCompleto" >
+  <br>
+ <label> Telefone</label>
+  <input type="text" name="numeroTelefone"  class="form-control telefone-mask" placeholder="(XX) XXXXX-XXXX" ><br>
+<label>  CPF</label>
+  <input type="text" name="cpf" class="form-control cpf-mask" placeholder="Ex.: 000.000.000-00"><br>
+<label>  Senha</label>
+  <input type="password" name="senha"  class= "form-control senha-mask" placeholder="Senha" required><br>
+ <label> Confirmar Senha</label>
+  <input type="password" name="confirmaSenha" class= "form-control confirmaSenha-mask" placeholder="Repita a senha" required>
+  
+  <br><br>
+  <input type="submit" value="Cadastrar">
+  </fieldset>
+</form> 
+		
+    </body>
+</html>
