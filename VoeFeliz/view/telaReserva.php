@@ -13,38 +13,53 @@ and open the template in the editor.
     <body>
     	<h1>Reserva de Passagem</h1>
         
-        <!-- <form >
-            <input type="radio" name="escolhaIdaVolta" checked>Ida e Volta
-            <input type="radio" name="escolhaIdaVolta">Somente Ida<br>
-        </form> -->
+      
 
-        <form action="?funcao=compraPassagem" method="post">
+        <form action="?funcao=comprarPassagem" method="post">
 
             <h3>Origem</h3>
-            <input type="text" name="cidadeOrigem">
+            <select name="cidadeOrigem" id="cidadeOrigem" required="">
+                <option value="Campo Grande" selected="selected">Campo Grande</option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Rio de Janeiro">Rio de Janeiro </option>
+                <option value="Natal">Natal</option>
+            </select>
             <h3>Destino</h3>
-            <input type="text" name="cidadeDestino">
+            <select name="cidadeDestino" id="cidadeDestino" required="">
+                <option value="" selected=""></option>
+                <option value="Campo Grande">Campo Grande</option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Rio de Janeiro">Rio de Janeiro </option>
+                <option value="Natal">Natal</option>
+            </select>
             <p>
+
+                <?php /*Pega a data Atual*/
+                $data =  date("Y-m-d"); ?> 
+                <p></p>
                 <label>Data de Ida</label>
-                <input id="dataIda" type="date" name="dataIda" required="" min="<?php echo date("Y-m-d") ?>">
+                <input id="dataIda" type="date" name="dataIda" required="" min="<?php echo $data; ?>">
 
-                <script type="text/javascript">
-                    function data() {
-                         return document.getElementById('dataIda');
-                    }
-                </script>
-
+                 <?php  //echo $_GET['dataIda'];?>
 
                 <label>Data Volta (Opcional)</label>
-                <input type="date" name="dataVolta" min="data()"><p></p>
+                <input type="date" name="dataVolta" min="<?php echo $data; ?>"><p></p>
 
                 <input type="submit" name="procurar" value="Procurar Vôo">
-
+                <p>
+                    <?php 
+                        if(isset($cliente) && count($cliente) > 0){
+                            echo("Tem cliente Graças a Deus!!");
+                        }
+                        else{
+                            echo "Não tem cliente";
+                        }
+                    ?>
+                </p>
 
             </p>
 
         </form>
-
 
         <?php
         

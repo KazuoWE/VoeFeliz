@@ -55,7 +55,6 @@ abstract class AbstractFactory {
      */
     abstract public function buscaNome(string $param): array ;
 
-
     /**
      * Busca objetos no banco de dados que atendem a um parâmetro. 
      * Executa um SQL "Select - From - Where"
@@ -63,7 +62,7 @@ abstract class AbstractFactory {
      * @return  array -  Array de objetos da classe, ou null se não encontrar 
      * objetos.
      */
-    //abstract function buscarId($param): array ;
+    abstract function buscarId($param): array ;
     /**
      * Faz o mapeamento Objeto-Relacional, transformando um resultado de 
      * consulta (PDOStatement) em uma lista de Objetos recuperados.

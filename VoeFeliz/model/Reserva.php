@@ -13,22 +13,32 @@
  */
 class Reserva {
     
+    private $idCliente;
     private $numeroReserva;
     private $data;
     private $hora;
     private $valor_total;
     
-    function __construct(string $numeroReserva, string $data, double $preco, string $hora) {
+    function __construct(string $idCliente, string $numeroReserva="", string $data,  string $hora, string $valor_total) {
+        $this->idCliente = $idCliente;
         $this->data = $data;
-        $this->valor_total = $preco;
-        $this->numeroReserva = $numeroReserva;
+        $this->hora = $hora;
+        $this->valor_total = $valor_total;
     }
 
     function getData() {
         return $this->data;
     }
 
-    function getPreco() {
+    function getHora(){
+        return $this->hora;
+    }
+    
+    function getIdCliente(){
+        return $this->idCliente;
+    }
+
+    function getValor_total() {
         return $this->valor_total;
     }
 

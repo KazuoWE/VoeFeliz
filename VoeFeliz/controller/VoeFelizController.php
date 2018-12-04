@@ -1,7 +1,9 @@
 <?php
 
-require_once("model/CGFactory.php");
-require_once("model/CGManager.php");
+require_once("model/ClienteFactory.php");
+require_once("model/ClienteManager.php");
+require_once("model/ReservaManager.php");
+require_once("model/ReservaFactory.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,10 +18,13 @@ require_once("model/CGManager.php");
 class VoeFelizController {
 
     private $manager;
+    private $Rmanager;
+    private $cliente;
 
     public function __construct() {
 
-        $this->manager = new CGManager;
+        $this->manager = new ClienteManager();
+        $this->Rmanager = new ReservaManager();
 
         ini_set('error_reporting', E_ALL);
         ini_set('display_errors', 1);
@@ -32,10 +37,9 @@ class VoeFelizController {
         } else {
             $f = "";
         }
-
         switch ($f) {
             case 'reserva':
-                $this->reserva();
+                $this->reserva($this->getCliente());
                 break;
             case 'comprarPassagem':
                 $this->comprarPassagem();
@@ -58,21 +62,71 @@ class VoeFelizController {
             case 'alterarPassagem':
                 $this->alterarPassagem();
                 break;
+            case 'telaCliente':
+                $this->telaCliente($cliente);
+                $this->cliente = $cliente;
+                if(isset($cliente) and count($cliente) > 0){
+                    echo("Tem cliente Graças a Deus!!");
+                    $cliente = $cliente;
+                }
+                else{
+                    echo "Não tem cliente";
+                }
+                break;
             default:
                 $this->home();
                 break;
         }
     }
 
-    public function reserva() {
+    /**
+    *Ações de reservas e compras de passagens
+    * @author Jefferson 
+    */
+    public function reserva($cliente) {
+
         require 'view/telaReserva.php';
     }
 
     public function comprarPassagem(){
 
-        //if(isset($_POST['']))
+        if(isset($_POST['procurar'])){
+
+            $origem = $_POST['cidadeOrigem'];
+            $destino = $_POST['cidadeDestino'];
+            
+            //Se origem e destinos são iguais exibe mensagem de erro
+            if ($origem == $destino) {
+                $texto = "\nCidade de Origem e Destino n&atilde;o podem ser iguais\n";
+                require 'view/telaReserva.php';
+                echo nl2br($texto);
+            }
+            else{
+
+                $dataIda = $_POST['dataIda'];
+                $dataVolta = $_POST['dataVolta'];
+                
+                $c = $this->getCliente();
+                // if(isset($c) and count($c) > 0){
+                //     echo("Tem cliente Graças a Deus!!");
+                //     $cliente = $cliente;
+                // }
+                // else{
+                //     echo "Não tem cliente";
+                // }
+                $this->Rmanager->cadastraReserva('1',  date("Y-m-d"),  date('H:i:s'), '500.00');
+
+
+                require 'view/listaVoos.php';
+            }
+        }
     }
 
+    /**
+    *
+    *Telas de cadastro dos usuários
+    *@author Hatanael Lima
+    */ 
     public function cadastroUsuario() {
         require 'view/cadastroUsuario.php';
     }
@@ -110,11 +164,16 @@ class VoeFelizController {
     }
 
 
+
     public function listaVoos() {
         require 'view/listaVoos.php';
     }
 
-
+    /**
+    *
+    *Tela inicial
+    *@author Jefferson
+    */
     public function home() {
         require 'view/telaInicial.php';
     }
@@ -129,7 +188,9 @@ class VoeFelizController {
                 
                 $result = $this->manager->verificaLogin($usuario, $senha);
                 if($result){
-                    require 'view/telaCliente.php';
+
+                    $cliente = $this->manager->buscarCliente($usuario);
+                    $this->telaCliente($cliente);
                 }
                 else {
                     require 'view/telaInicial.php';
@@ -144,6 +205,25 @@ class VoeFelizController {
         }
 
     }
+
+    public function getCliente(){
+        return $this->cliente;
+    }
+
+
+    public function telaCliente($cliente){
+        $this->cliente = $cliente;
+
+        $listaReserva = $this->Rmanager->listar();
+        require 'view/telaCliente.php';
+
+
+        if (isset($_POST['reservar'])) {
+            $this->reserva($this->cliente);
+        }
+
+    }
+
 
     public function alterarPassagem() {
         require 'view/listaVoos.php';

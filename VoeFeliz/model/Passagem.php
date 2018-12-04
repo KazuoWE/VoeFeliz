@@ -23,8 +23,8 @@ class Passagem {
     private $companhia;
 
     
-    function __construct(string $idPassagem="", string $idCLiente ,date $dataIda, date $dataVolta, double $preco, string $companhia) {
-
+    function __construct(string $idPassagem="", string $idCLiente, date $dataIda, date $dataVolta, double $preco, string $companhia) {
+        $this->idCLiente = $idCLiente;
         $this->dataIda = $dataIda;
         $this->dataVolta = $dataVolta;
         $this->preco = $preco;
@@ -56,5 +56,4 @@ class Passagem {
     }
 
 
-    
 }

@@ -32,7 +32,3 @@ CREATE TABLE "passagem" (
 );
 
 
-CREATE TABLE "voo" (
-	
-
-);
